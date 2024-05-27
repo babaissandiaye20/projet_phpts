@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'purple': '#6D28D9',
+            'light-purple': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .bg-light-purple {
+        background-color: #EDE9FE;
+      }
+    }
+  </style>
+</head>
+<body class="bg-light-purple">
+  <div class="flex min-h-screen">
+    <aside class="bg-purple text-white p-4 w-64">
+      <h1 class="text-2xl font-bold mb-6">Coursie</h1>
+      <nav>
+        <ul>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg> Dashboard</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+          </svg> All Courses</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+          </svg> Messages</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+          </svg> Friends</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+          </svg> Schedule</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.5321.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+          </svg> Settings</a></li>
+          <li class="mb-2"><a href="#" class="flex items-center text-white hover:bg-purple-700 rounded p-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+          </svg> Directory</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="flex-1 p-6">
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 class="text-2xl font-bold mb-4">My Courses</h2>
+        <div class="flex items-center mb-4">
+          <label for="filter" class="mr-2">Filter by:</label>
+          <select id="filter" class="bg-gray-200 rounded-lg p-2">
+            <option value="time">Time</option>
+            <option value="level">Level</option>
+            <option value="language">Language</option>
+            <option value="type">Type</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-light-purple rounded-lg p-4 flex items-center">
+            <div class="bg-purple rounded-lg p-2 mr-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 3a1 1 0 012 0v5.5a.5.5 0 001 0V4a1 1 0 112 0v5.5a.5.5 0 001 0V4a3 3 0 10-6 0v5.5a.5.5 0 001 0V3z" />
+                <path d="M8.27 9.16a.5.5 0 00.72 0l2.86-2.86a.5.5 0 10-.72-.72L9 7.71 6.87 5.58a.5.5 0 10-.72.72l2.86 2.86z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-1">Operating System</h3>
+              <p class="text-gray-600">Kernel, interruptions, multitasking, deadlock conditions, multi-threading, and memories management.</p>
+              <p class="text-sm">Created by Mark Lee</p>
+            </div>
+          </div>
+          <!-- Add more course cards here -->
+        </div>
+      </div>
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-4">Online Users</h2>
+        <div class="flex items-center mb-4">
+          <a href="#" class="text-purple hover:underline">See all</a>
+        </div>
+        <ul>
+          <li class="flex items-center mb-2">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="rounded-full mr-2">
+            <div>
+              <h3 class="text-lg font-semibold">Maria Maureen</h3>
+              <p class="text-gray-600">Online 2 hours ago</p>
+            </div>
+          </li>
+          <!-- Add more online users here -->
+        </ul>
+      </div>
+      <div id="map"></div>
+    </main>
+  </div>
+  
+  <script>
+    /**
+ * Copyright 2020 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import { Loader } from '@googlemaps/js-api-loader';
+import MarkerClusterer from '@google/markerclustererplus';
+
+const apiOptions = {
+  apiKey: "YOUR API KEY"
+}
+
+const loader = new Loader(apiOptions);
+
+loader.load().then(() => {
+  console.log('Maps JS API loaded');
+  const map = displayMap();
+  const markers = addMarkers(map);
+  clusterMarkers(map, markers);
+  addPanToMarker(map, markers);
+});
+
+function displayMap() {
+  const mapOptions = {
+    center: { lat: -33.860664, lng: 151.208138 },
+    zoom: 14,
+    mapId: 'YOUR_MAP_ID'
+  };
+  const mapDiv = document.getElementById('map');
+  return new google.maps.Map(mapDiv, mapOptions);
+}
+
+function addMarkers(map) {
+  const locations = {
+    operaHouse: { lat: -33.8567844, lng: 151.213108 },
+    tarongaZoo: { lat: -33.8472767, lng: 151.2188164 },
+    manlyBeach: { lat: -33.8209738, lng: 151.2563253 },
+    hyderPark: { lat: -33.8690081, lng: 151.2052393 },
+    theRocks: { lat: -33.8587568, lng: 151.2058246 },
+    circularQuay: { lat: -33.858761, lng: 151.2055688 },
+    harbourBridge: { lat: -33.852228, lng: 151.2038374 },
+    kingsCross: { lat: -33.8737375, lng: 151.222569 },
+    botanicGardens: { lat: -33.864167, lng: 151.216387 },
+    museumOfSydney: { lat: -33.8636005, lng: 151.2092542 },
+    maritimeMuseum: { lat: -33.869395, lng: 151.198648 },
+    kingStreetWharf: { lat: -33.8665445, lng: 151.1989808 },
+    aquarium: { lat: -33.869627, lng: 151.202146 },
+    darlingHarbour: { lat: -33.87488, lng: 151.1987113 },
+    barangaroo: { lat: - 33.8605523, lng: 151.1972205 }
+  }
+  const markers = [];
+  for (const location in locations) {
+    const markerOptions = {
+      map: map,
+      position: locations[location],
+      icon: './img/custom_pin.png'
+    }
+    const marker = new google.maps.Marker(markerOptions);
+    markers.push(marker);
+  }
+  return markers;
+}
+
+function clusterMarkers(map, markers) {
+  const clustererOptions = { imagePath: './img/m' };
+  const markerCluster = new MarkerClusterer(map, markers, clustererOptions);
+}
+
+function addPanToMarker(map, markers) {
+  let circle;
+  markers.map(marker => {
+    marker.addListener('click', event => {
+      const location = { lat: event.latLng.lat(), lng: event.latLng.lng() };
+      map.panTo(location);
+      if (circle) {
+        circle.setMap(null);
+      }
+      circle = drawCircle(map, location);
+    });
+  });
+}
+
+function drawCircle(map, location) {
+  const circleOptions = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 1,
+    map: map,
+    center: location,
+    radius: 800
+  }
+  const circle = new google.maps.Circle(circleOptions);
+  return circle;
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+[
+    {
+        "_libelle": "Cargaison 1",
+        "_type": "Cargaison Maritime",
+        "_distance": 3000,
+        "_frais": 0,
+        "_pays_depart": "France",
+        "_pays_arrivee": "Brésil",
+        "_date_depart": "2024-05-01",
+        "_date_arrivee": "2024-05-15",
+        "_produits": [
+            {
+                "nom": "Produit Alimentaire 1",
+                "poids": 200,
+                "type": "alimentaire"
+            },
+            {
+                "nom": "Produit Incassable 1",
+                "poids": 500,
+                "type": "incassable"
+            }
+        ]
+    },
+    {
+        "_libelle": "Cargaison 2",
+        "_type": "Cargaison Routiere",
+        "_distance": 1500,
+        "_frais": 0,
+        "_pays_depart": "Allemagne",
+        "_pays_arrivee": "Italie",
+        "_date_depart": "2024-06-01",
+        "_date_arrivee": "2024-06-05",
+        "_produits": [
+            {
+                "nom": "Produit Chimique 1",
+                "poids": 300,
+                "degre_toxite": 3,
+                "type": "chimique"
+            },
+            {
+                "nom": "Produit Alimentaire 2",
+                "poids": 150,
+                "type": "alimentaire"
+            }
+        ]
+    },
+    {
+        "_libelle": "Cargaison 3",
+        "_type": "Cargaison Aerien",
+        "_distance": 8000,
+        "_frais": 0,
+        "_pays_depart": "États-Unis",
+        "_pays_arrivee": "Japon",
+        "_date_depart": "2024-07-01",
+        "_date_arrivee": "2024-07-05",
+        "_produits": [
+            {
+                "nom": "Produit Fragile 1",
+                "poids": 100,
+                "type": "fragile"
+            },
+            {
+                "nom": "Produit Alimentaire 3",
+                "poids": 200,
+                "type": "alimentaire"
+            }
+        ]
+    }
+]

@@ -1,0 +1,80 @@
+[
+    {
+        "_code": "CARGO-83",
+        "_libelle": "Dia ",
+        "_type": "Cargaison Aerien",
+        "_distance": 4398.3,
+        "_frais": 0,
+        "_pays_depart": "issa",
+        "_pays_arrivee": "dia",
+        "_date_depart": "2024-05-29",
+        "_date_arrivee": "2024-05-30",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    },
+    {
+        "_code": "CARGO-236",
+        "_libelle": "saer",
+        "_type": "Cargaison Aerien",
+        "_distance": 2791.84,
+        "_frais": 0,
+        "_pays_depart": "Mali",
+        "_pays_arrivee": "S\u00e9n\u00e9gal",
+        "_date_depart": "2024-05-29",
+        "_date_arrivee": "2024-05-31",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    },
+    {
+        "_code": "CARGO-197",
+        "_libelle": "issa",
+        "_type": "Cargaison Aerien",
+        "_distance": 3600.63,
+        "_frais": 0,
+        "_pays_depart": "Mali",
+        "_pays_arrivee": "Soudan",
+        "_date_depart": "2024-05-31",
+        "_date_arrivee": "2024-06-02",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    },
+    {
+        "_code": "CARGO-201",
+        "_libelle": "Fallou",
+        "_type": "Cargaison Aerien",
+        "_distance": 4414.24,
+        "_frais": 0,
+        "_pays_depart": "Tchad",
+        "_pays_arrivee": "Riyad",
+        "_date_depart": "2024-05-29",
+        "_date_arrivee": "2024-05-30",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    },
+    {
+        "_code": "CARGO-287",
+        "_libelle": "Fallou",
+        "_type": "Cargaison Aerien",
+        "_distance": 5285.29,
+        "_frais": 0,
+        "_pays_depart": "Tchad",
+        "_pays_arrivee": "Paris",
+        "_date_depart": "2024-05-31",
+        "_date_arrivee": "2024-06-02",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    },
+    {
+        "_code": "CARGO-69",
+        "_libelle": "issa",
+        "_type": "Cargaison Maritime",
+        "_distance": 2448.82,
+        "_frais": 0,
+        "_pays_depart": "Guin\u00e9e-Bissau",
+        "_pays_arrivee": "Dansoshiya",
+        "_date_depart": "2024-05-30",
+        "_date_arrivee": "2024-05-31",
+        "_produits": [],
+        "_etat_avancement": "Ouvert"
+    }
+]
