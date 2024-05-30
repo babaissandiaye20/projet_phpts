@@ -30,50 +30,52 @@ set numéro(value:number){
 
 }
 export abstract class produit {
-    
+    code:string;
     nom: string;
     poids: number;
-    _client:client
+    client:client
 
-    constructor(nom: string, poids: number,client:client) {
+    constructor(code:string,nom: string, poids: number,client:client) {
+        this.code= code;
         this.nom = nom;
         this.poids = poids;
-        this._client=client;
+        this.client=client;
     }
+
 }
 
 export class produit_alimentaire extends produit {
-    constructor(nom: string, poids: number,client:client) {
-        super(nom, poids,client);
+    constructor(code:string,nom: string, poids: number,client:client) {
+        super(code,nom, poids,client);
     }
 }
 
 export class produit_chimique extends produit {
     degre_toxite: number;
-    constructor(nom: string, poids: number, degre_toxite: number,client:client) {
-        super(nom, poids,client);
+    constructor(code:string,nom: string, poids: number, degre_toxite: number,client:client) {
+        super(code,nom, poids,client);
         this.degre_toxite = degre_toxite;
     }
 }
 
 export abstract class produit_materiel extends produit {
-    constructor(nom: string, poids: number,client:client) {
-        super(nom, poids,client);
+    constructor(code:string,nom: string, poids: number,client:client) {
+        super(code,nom, poids,client);
     }
 }
 
 export class produit_incassable extends produit_materiel {
     type: string = "incassable";
-    constructor(nom: string, poids: number, type: string = "incassable", client:client) {
-        super(nom, poids,client);
+    constructor(code:string,nom: string, poids: number, type: string = "incassable", client:client) {
+        super(code,nom, poids,client);
         this.type = type;
     }
 }
 
 export class produit_fragile extends produit_materiel {
     type: string = "fragile";
-    constructor(nom: string, poids: number, type: string = "fragile",client:client) {
-        super(nom, poids,client);
+    constructor(code:string,nom: string, poids: number, type: string = "fragile",client:client) {
+        super(code,nom, poids,client);
         this.type = type;
     }
 }
@@ -93,8 +95,9 @@ export abstract class Cargaison {
     private _date_arrivee: string;
     private _produits: produit[];
     private _etat_avancement:string;
+    private _ajout_produitbtn:string;
 
-    constructor(code:string,libelle: string, type: string, distance: number, frais: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string) {
+    constructor(code:string,libelle: string, type: string, distance: number, frais: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string,ajout_produitbtn:string) {
         this._code=  code ||generateUniqueCode();
         this._libelle = libelle;
         this._type = type;
@@ -106,6 +109,7 @@ export abstract class Cargaison {
         this._date_arrivee = date_arrivee;
         this._produits = produits;
         this._etat_avancement=etat_avancement;
+        this._ajout_produitbtn=ajout_produitbtn;
     }
 get code():string{
     return this._code;
@@ -181,6 +185,13 @@ set code(value:string){
     set etat_avancement(value:string){
         this._etat_avancement=value;
     }
+    get ajout_produitbtn():string{
+        return this._ajout_produitbtn;
+    } 
+    set ajout_produitbtn(value){
+        this._ajout_produitbtn=value;
+    }
+
     public ajouterProduit(produit: produit): void {
         if (this._produits.length <= 10) {
             this._produits.push(produit);
@@ -196,8 +207,8 @@ set code(value:string){
 }
 
 export class CargaisonMaritime extends Cargaison {
-    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancementt:string) {
-        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancementt);
+    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string,ajout_produitbtn:string) {
+        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancement,ajout_produitbtn);
     }
 
     ajouterProduit(produit: produit) {
@@ -232,8 +243,8 @@ export class CargaisonMaritime extends Cargaison {
 }
 
 export class CargaisonRoutiere extends Cargaison {
-    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string) {
-        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancement)
+    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string,ajout_produitbtn:string) {
+        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancement,ajout_produitbtn)
     }
 
     public ajouterProduit(produit: produit): void {
@@ -264,8 +275,8 @@ export class CargaisonRoutiere extends Cargaison {
 }
 
 export class Cargaisonaerin extends Cargaison {
-    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string) {
-        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancement);
+    constructor(code:string,libelle: string, type: string, distance: number, pays_depart: string, pays_arrivee: string, date_depart: string, date_arrivee: string, produits: produit[],etat_avancement:string,ajout_produitbtn:string) {
+        super(code,libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits,etat_avancement,ajout_produitbtn);
     }
 
     public ajouterProduit(produit: produit): void {
@@ -326,11 +337,11 @@ function loadData() {
         .then(data => {
             cargaisons = data.map((c:any) => {
                 if (c._type === "Cargaison Maritime") {
-                    return new CargaisonMaritime(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement);
+                    return new CargaisonMaritime(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement,c._ajout_produitbtn);
                 } else if (c._type === "Cargaison Aerienne") {
-                    return new Cargaisonaerin(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement);
+                    return new Cargaisonaerin(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement,c._ajout_produitbtn);
                 } else {
-                    return new CargaisonRoutiere(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement);
+                    return new CargaisonRoutiere(c._code,c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits,c._etat_avancement,c._ajout_produitbtn);
                 }
             });
             afficherCargaisons(cargaisons,currentPage);
@@ -377,12 +388,13 @@ fetch('http://www.baba.issa.ndiaye:8024/projet_phpts/src/php/templates/load_data
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.date_depart}</td>
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.date_arrivee}</td>
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.distance} km</td>
-            <td class="px-6 py-4 text-primary text-2xl "> 
-            <button class="bg">${cargaison.etat_avancement}</button>
+            <td class="px-6 py-4 text-primary text-2xl  "> 
+            <button class="bg" data-code="${cargaison.code}" data-action="etat_avancement">${cargaison.etat_avancement}</button>
+            <button class="bg" data-code="${cargaison.code}" data-action="ajout_produitbtn">${cargaison.ajout_produitbtn}</button>
             </td>
 
         `;
-        ;
+        
         row.classList.add('bg-secondary');
         tableBody.appendChild(row);
 
@@ -412,6 +424,29 @@ fetch('http://www.baba.issa.ndiaye:8024/projet_phpts/src/php/templates/load_data
     }); 
 
     updatePaginationControls( cargo);
+    document.querySelectorAll('button[data-action="ajout_produitbtn"]').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const button = event.currentTarget as HTMLButtonElement;
+            const cargoCode = button.getAttribute('data-code');
+            const modal = document.getElementById('add-produit-modal') as HTMLDivElement;
+            modal.classList.remove('hidden');
+            /* console.log(`Produit ajouté pour le cargaison: ${cargoCode}`); */
+
+        });
+    });
+    
+    let close_produit_modal=document.getElementById("add-cargaison-form")as HTMLDivElement;
+    close_produit_modal.addEventListener("click",function(){
+        const modal = document.getElementById('add-produit-modal') as HTMLDivElement;
+        modal.classList.add('hidden');
+    });
+    
+    const closeModalButton = document.getElementById('close-modal_produit') as HTMLButtonElement;
+    closeModalButton.addEventListener('click', () => {
+        const modal = document.getElementById('add-produit-modal') as HTMLDivElement;
+        modal.classList.add('hidden');
+    });
+
 }
 
 // Function to update pagination controls
@@ -494,6 +529,7 @@ btn.addEventListener("click", function (event) {
     let span_error_date_comparison = document.getElementById("error_date_comparison") as HTMLSpanElement;
     let code:string=generateUniqueCode();
     let etat_avancement="Ouvert"
+    let ajout_produitbtn="ajouter cargaison";
 
     let isValid = true;
 
@@ -569,11 +605,11 @@ btn.addEventListener("click", function (event) {
     let produit: produit[] = [];
 
     if (selectCargo === "Cargaison Maritime") {
-        nouvelleCargaison = new CargaisonMaritime(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement);
+        nouvelleCargaison = new CargaisonMaritime(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement,ajout_produitbtn);
     } else if (selectCargo === "Cargaison Aerien") {
-        nouvelleCargaison = new Cargaisonaerin(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement);
+        nouvelleCargaison = new Cargaisonaerin(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement,ajout_produitbtn);
     } else {
-        nouvelleCargaison = new CargaisonRoutiere(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement);
+        nouvelleCargaison = new CargaisonRoutiere(code,lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit,etat_avancement,ajout_produitbtn);
     }
 
     clearFormFields();
@@ -714,3 +750,4 @@ searchFields.forEach(fieldId => {
         afficherCargaisons111(cargaisons, filtre);
     });
 });
+let btn_produitpopup=document?.getElementById('btn_produit')as HTMLButtonElement;

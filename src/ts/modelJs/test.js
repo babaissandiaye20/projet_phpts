@@ -27,43 +27,45 @@ class client {
     }
 }
 export class produit {
+    code;
     nom;
     poids;
-    _client;
-    constructor(nom, poids, client) {
+    client;
+    constructor(code, nom, poids, client) {
+        this.code = code;
         this.nom = nom;
         this.poids = poids;
-        this._client = client;
+        this.client = client;
     }
 }
 export class produit_alimentaire extends produit {
-    constructor(nom, poids, client) {
-        super(nom, poids, client);
+    constructor(code, nom, poids, client) {
+        super(code, nom, poids, client);
     }
 }
 export class produit_chimique extends produit {
     degre_toxite;
-    constructor(nom, poids, degre_toxite, client) {
-        super(nom, poids, client);
+    constructor(code, nom, poids, degre_toxite, client) {
+        super(code, nom, poids, client);
         this.degre_toxite = degre_toxite;
     }
 }
 export class produit_materiel extends produit {
-    constructor(nom, poids, client) {
-        super(nom, poids, client);
+    constructor(code, nom, poids, client) {
+        super(code, nom, poids, client);
     }
 }
 export class produit_incassable extends produit_materiel {
     type = "incassable";
-    constructor(nom, poids, type = "incassable", client) {
-        super(nom, poids, client);
+    constructor(code, nom, poids, type = "incassable", client) {
+        super(code, nom, poids, client);
         this.type = type;
     }
 }
 export class produit_fragile extends produit_materiel {
     type = "fragile";
-    constructor(nom, poids, type = "fragile", client) {
-        super(nom, poids, client);
+    constructor(code, nom, poids, type = "fragile", client) {
+        super(code, nom, poids, client);
         this.type = type;
     }
 }
@@ -82,7 +84,8 @@ export class Cargaison {
     _date_arrivee;
     _produits;
     _etat_avancement;
-    constructor(code, libelle, type, distance, frais, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement) {
+    _ajout_produitbtn;
+    constructor(code, libelle, type, distance, frais, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn) {
         this._code = code || generateUniqueCode();
         this._libelle = libelle;
         this._type = type;
@@ -94,6 +97,7 @@ export class Cargaison {
         this._date_arrivee = date_arrivee;
         this._produits = produits;
         this._etat_avancement = etat_avancement;
+        this._ajout_produitbtn = ajout_produitbtn;
     }
     get code() {
         return this._code;
@@ -161,6 +165,12 @@ export class Cargaison {
     set etat_avancement(value) {
         this._etat_avancement = value;
     }
+    get ajout_produitbtn() {
+        return this._ajout_produitbtn;
+    }
+    set ajout_produitbtn(value) {
+        this._ajout_produitbtn = value;
+    }
     ajouterProduit(produit) {
         if (this._produits.length <= 10) {
             this._produits.push(produit);
@@ -171,8 +181,8 @@ export class Cargaison {
     }
 }
 export class CargaisonMaritime extends Cargaison {
-    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancementt) {
-        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancementt);
+    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn) {
+        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn);
     }
     ajouterProduit(produit) {
         super.ajouterProduit(produit);
@@ -206,8 +216,8 @@ export class CargaisonMaritime extends Cargaison {
     }
 }
 export class CargaisonRoutiere extends Cargaison {
-    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement) {
-        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement);
+    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn) {
+        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn);
     }
     ajouterProduit(produit) {
         super.ajouterProduit(produit);
@@ -233,8 +243,8 @@ export class CargaisonRoutiere extends Cargaison {
     }
 }
 export class Cargaisonaerin extends Cargaison {
-    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement) {
-        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement);
+    constructor(code, libelle, type, distance, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn) {
+        super(code, libelle, type, distance, 0, pays_depart, pays_arrivee, date_depart, date_arrivee, produits, etat_avancement, ajout_produitbtn);
     }
     ajouterProduit(produit) {
         super.ajouterProduit(produit);
@@ -290,13 +300,13 @@ function loadData() {
         .then(data => {
         cargaisons = data.map((c) => {
             if (c._type === "Cargaison Maritime") {
-                return new CargaisonMaritime(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement);
+                return new CargaisonMaritime(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement, c._ajout_produitbtn);
             }
             else if (c._type === "Cargaison Aerienne") {
-                return new Cargaisonaerin(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement);
+                return new Cargaisonaerin(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement, c._ajout_produitbtn);
             }
             else {
-                return new CargaisonRoutiere(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement);
+                return new CargaisonRoutiere(c._code, c._libelle, c._type, c._distance, c._pays_depart, c._pays_arrivee, c._date_depart, c._date_arrivee, c._produits, c._etat_avancement, c._ajout_produitbtn);
             }
         });
         afficherCargaisons(cargaisons, currentPage);
@@ -336,12 +346,12 @@ function afficherCargaisons(cargo, page = 1) {
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.date_depart}</td>
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.date_arrivee}</td>
             <td class="px-6 py-4 text-primary text-1xl">${cargaison.distance} km</td>
-            <td class="px-6 py-4 text-primary text-2xl "> 
-            <button class="bg">${cargaison.etat_avancement}</button>
+            <td class="px-6 py-4 text-primary text-2xl  "> 
+            <button class="bg" data-code="${cargaison.code}" data-action="etat_avancement">${cargaison.etat_avancement}</button>
+            <button class="bg" data-code="${cargaison.code}" data-action="ajout_produitbtn">${cargaison.ajout_produitbtn}</button>
             </td>
 
         `;
-        ;
         row.classList.add('bg-secondary');
         tableBody.appendChild(row);
         const card = document.createElement('div');
@@ -369,6 +379,25 @@ function afficherCargaisons(cargo, page = 1) {
         cardsView.appendChild(card);
     });
     updatePaginationControls(cargo);
+    document.querySelectorAll('button[data-action="ajout_produitbtn"]').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const button = event.currentTarget;
+            const cargoCode = button.getAttribute('data-code');
+            const modal = document.getElementById('add-produit-modal');
+            modal.classList.remove('hidden');
+            /* console.log(`Produit ajouté pour le cargaison: ${cargoCode}`); */
+        });
+    });
+    let close_produit_modal = document.getElementById("add-cargaison-form");
+    close_produit_modal.addEventListener("click", function () {
+        const modal = document.getElementById('add-produit-modal');
+        modal.classList.add('hidden');
+    });
+    const closeModalButton = document.getElementById('close-modal_produit');
+    closeModalButton.addEventListener('click', () => {
+        const modal = document.getElementById('add-produit-modal');
+        modal.classList.add('hidden');
+    });
 }
 // Function to update pagination controls
 function updatePaginationControls(cargo) {
@@ -437,6 +466,7 @@ btn.addEventListener("click", function (event) {
     let span_error_date_comparison = document.getElementById("error_date_comparison");
     let code = generateUniqueCode();
     let etat_avancement = "Ouvert";
+    let ajout_produitbtn = "ajouter cargaison";
     let isValid = true;
     // Validation
     if (lib === "") {
@@ -509,13 +539,13 @@ btn.addEventListener("click", function (event) {
     let nouvelleCargaison;
     let produit = [];
     if (selectCargo === "Cargaison Maritime") {
-        nouvelleCargaison = new CargaisonMaritime(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement);
+        nouvelleCargaison = new CargaisonMaritime(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement, ajout_produitbtn);
     }
     else if (selectCargo === "Cargaison Aerien") {
-        nouvelleCargaison = new Cargaisonaerin(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement);
+        nouvelleCargaison = new Cargaisonaerin(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement, ajout_produitbtn);
     }
     else {
-        nouvelleCargaison = new CargaisonRoutiere(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement);
+        nouvelleCargaison = new CargaisonRoutiere(code, lib, selectCargo, distance, selectCountry1, selectCountry2, heureDepart, heureArrivee, produit, etat_avancement, ajout_produitbtn);
     }
     clearFormFields();
     // Ajout de la cargaison
@@ -637,3 +667,4 @@ searchFields.forEach(fieldId => {
         afficherCargaisons111(cargaisons, filtre);
     });
 });
+let btn_produitpopup = document?.getElementById('btn_produit');

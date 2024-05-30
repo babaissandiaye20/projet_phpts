@@ -287,6 +287,73 @@ $data = readData();
     </form>
   </div>
 </div>
+<div id="add-produit-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded shadow-lg w-full max-w-4xl relative">
+    <button type="button" id="close-modal_produit" class="absolute top-4 right-4 text-white bg-secondary hover:bg-primary p-2 rounded-full">&times;</button>
+    
+    <h2 class="text-2xl font-semibold mb-4 bg-primary text-white p-4 rounded-t-lg">Ajout produit</h2>
+    <form method="post" id="add-cargaison-form">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="relative">
+          <label for="lib_cargo" class="block text-gray-700">Libellé produit</label>
+          <input type="text" id="lib_produit" name="libelle" class="input input-bordered w-full mt-2" placeholder="Ajoutez un Libellé">
+          <span id="error_lib" class="text-red-600 hidden absolute -bottom-5 left-0">Libellé requis !</span>
+        </div>
+        <div class="relative">
+          <label for="select-produit" class="block text-gray-700">Type de produit</label>
+          <select id="select-produit" name="type" class="input input-bordered w-full mt-2">
+            <option value="choice">Choisir un type de produit</option>
+            <option value="produit_alimentaire">produit alimentaire</option>
+            <option value="produit_chimique">produit chimique </option>
+            <option value="produit"></option>
+          </select>
+          <span id="error_selectcargo" class="text-red-600 hidden absolute -bottom-5 left-0">Sélection requise !</span>
+        </div>
+        <div class="relative">
+          <label for="datefirtst" class="block text-gray-700">Date de départ</label>
+          <input type="date" name="date_depart" id="datefirtst" class="input input-bordered w-full mt-2">
+          <span id="error_datefirst" class="text-red-600 hidden absolute -bottom-5 left-0">Date de départ requise !</span>
+        </div>
+        <div class="relative">
+          <label for="dateend" class="block text-gray-700">Date d'arrivée</label>
+          <input type="date" id="dateend" name="date_arrivee" class="input input-bordered w-full mt-2">
+          <span id="error_dateend" class="text-red-600 hidden absolute -bottom-5 left-0">Date d'arrivée requise !</span>
+        </div>
+        <div class="relative col-span-2">
+          <span id="error_date_comparison" class="text-red-600 hidden absolute bottom-0 left-0"></span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="relative">
+          <label for="start-location" class="block text-gray-700">Ville de départ</label>
+          <input type="text" id="start-location" name="pays_depart" class="input input-bordered w-full mt-2">
+          <span id="error_towndep" class="text-red-600 hidden absolute -bottom-5 left-0">Zone de départ requise !</span>
+        </div>
+        <div class="relative">
+          <label for="end-location" class="block text-gray-700">Ville d'arrivée</label>
+          <input type="text" id="end-location" name="pays_arrivee" class="input input-bordered w-full mt-2" >
+          <span id="error_townar" class="text-red-600 hidden absolute -bottom-5 left-0">Zone d'arrivée requise !</span>
+        </div>
+        <div class="relative">
+          <label for="distance" class="block text-gray-700">Distance (km)</label>
+          <input type="text" id="distance" name="distance" class="input input-bordered w-full mt-2" readonly>
+          <span id="error_distance" class="text-red-600 hidden absolute -bottom-5 left-0">Distance requise !</span>
+        </div>
+        <div class="relative">
+          <label for="choiceimit" class="block text-gray-700">type de Limitation</label>
+          <select name="" id="select_limit" class="input input-bordered w-full mt-2">
+            <option value="">choisir une option d elimita</option>
+            <option value="poids">Poids</option>
+            <option value="">Nombre</option>
+          </select>
+          
+          <span id="error_poids" class="text-red-600 hidden absolute -bottom-5 left-0">champsrequise !</span>
+        </div>
+      </div>
+      <button type="submit" id="btn" class="btn bg-primary w-full text-white hover:bg-secondary-dark hover:text-primary mb-4">Ajouter Cargaison</button>
+    </form>
+  </div>
+</div>
 
 <script src="../ts/modelJs/test.js" type="module"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -354,10 +421,11 @@ document.getElementById('show-form').addEventListener('click', function() {
   map.invalidateSize();
 });
 
+
 document.getElementById('close-modal').addEventListener('click', function() {
   document.getElementById('add-cargaison-modal').classList.add('hidden');
   resetMap();
-});
+});console.log(`Produit ajouté pour le cargaison: ${cargoCode}`);
 
 function resetMap() {
   if (startMarker) map.removeLayer(startMarker);
